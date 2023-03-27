@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  postgres:
+    container_name: dcs-postgres
+    image: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/
+    environment:
+      POSTGRES_USER: dcs-user
+      POSTGRES_PASSWORD: dcs-password
+      POSTGRES_DB: dcs
