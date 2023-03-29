@@ -1,6 +1,9 @@
 const { faker } = require('@faker-js/faker');
 const { appendFileSync } = require('fs');
 
+const FILE_PATH = '../data/products.csv';
+const ROW_NUMBER = 1000;
+
 const generateProduct = () => [
   faker.commerce.productName(),
   faker.commerce.department(),
@@ -15,8 +18,8 @@ const arrayToRow = (array) => {
   return enquotedArray.join(',') + '\n';
 };
 
-for (let i = 0; i < 1000; i++) {
+for (let i = 0; i < ROW_NUMBER; i++) {
   const product = generateProduct();
   const row = arrayToRow(product);
-  appendFileSync('contents.csv', row);
+  appendFileSync(FILE_PATH, row);
 }
