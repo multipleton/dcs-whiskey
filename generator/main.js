@@ -1,12 +1,25 @@
-const { faker } = require("@faker-js/faker");
+const { faker } = require('@faker-js/faker');
+const { appendFileSync } = require('fs');
 
-const generateProduct = () => ({
-  name: faker.commerce.productName(),
-  department: faker.commerce.department(),
-  description: faker.commerce.productDescription(),
-  price: faker.commerce.price(),
-  image: faker.image.imageUrl(),
-  releasedAt: faker.date.past(),
-});
+const FILE_PATH = '../data/products.csv';
+const ROW_NUMBER = 1000;
 
-console.log(generateProduct()); // TODO: write to file
+const generateProduct = () => [
+  faker.commerce.productName(),
+  faker.commerce.department(),
+  faker.commerce.productDescription(),
+  faker.commerce.price(),
+  faker.image.imageUrl(),
+  faker.date.past(),
+];
+
+const arrayToRow = (array) => {
+  const enquotedArray = array.map((el) => `"${el}"`);
+  return enquotedArray.join(',') + '\n';
+};
+
+for (let i = 0; i < ROW_NUMBER; i++) {
+  const product = generateProduct();
+  const row = arrayToRow(product);
+  appendFileSync(FILE_PATH, row);
+}
