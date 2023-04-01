@@ -14,8 +14,9 @@ const generateProduct = () => [
 ];
 
 const arrayToRow = (array) => {
-  const enquotedArray = array.map((el) => `"${el}"`);
-  return enquotedArray.join(',') + '\n';
+  return array
+    .map(entry => `${entry}`.replace(/,/g, ''))
+    .join(',') + "\n";
 };
 
 for (let i = 0; i < ROW_NUMBER; i++) {
