@@ -16,10 +16,10 @@ public class Program {
         System.out.println("Starting test");
         Timer timer = new Timer();
         timer.start();
-        // TODO: get data by department and change price
+
         dbManager.find();
         dbManager.update();
-        //
+
         double ms = timer.end();
         String result = "Finished in " + ms + " ms";
         System.out.println(result);
