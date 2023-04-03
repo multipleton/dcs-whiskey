@@ -70,11 +70,25 @@ public class DBManager {
     }
 
     public void find() {
-        // TODO:
+        String sql = "SELECT (name, department, description, price, image, released_at) FROM products";
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+        } catch (SQLException e) {
+            System.out.println("Unable to fetch data");
+        }
     }
 
     public void update() {
-        // TODO:
+        String sql = "UPDATE products SET price = price * 38";
+
+        try {
+            Statement statement = connection.createStatement();
+            int result = statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            System.out.println("Unable to update data");
+        }
     }
 
 }
